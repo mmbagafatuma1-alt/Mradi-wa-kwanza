@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuku Bora Farm - Mabanda, Kuku na Mayai ya Kisasa</title>
+    <style>
+        /* --- BRAND RANGI & MISINGI --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --kijani-kibichi: #0b5345;
+            --kijani-soft: #117a65;
+            --dhahabu: #d4af37;
+            --nyeupe: #ffffff;
+            --kijivu-fanya: #f4f6f6;
+            --maandishi-meusi: #2c3e50;
+        }
+
+        body {
+            background-color: var(--kijivu-fanya);
+            color: var(--maandishi-meusi);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- MENU YA JUU (NAVIGATION) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(11, 83, 69, 0.95);
+            border-bottom: 2px solid var(--dhahabu);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--nyeupe);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--dhahabu);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--nyeupe);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--dhahabu);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(11, 83, 69, 0.7)), 
+                        url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=1920') no-repeat center center/cover;
+            color: var(--nyeupe);
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--dhahabu);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .btn-main {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--dhahabu);
+            color: var(--kijani-kibichi);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-main:hover {
+            background-color: var(--nyeupe);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--kijani-kibichi);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--dhahabu);
+        }
+
+        /* --- KADI ZA BIDHAA (GRID SYSTEM) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--nyeupe);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(11, 83, 69, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-info h3 {
+            font-size: 1.3rem;
+            color: var(--kijani-kibichi);
+            margin-bottom: 10px;
+        }
+
+        .card-info p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: var(--dhahabu);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-sm {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--kijani-kibichi);
+            color: var(--nyeupe);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-sm:hover {
+            background-color: var(--dhahabu);
+            color: var(--kijani-kibichi);
+        }
+
+        /* --- BANDA LA KUKU SECTION --- */
+        .banda-section {
+            background-color: var(--nyeupe);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .banda-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .banda-text p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .banda-img {
+            flex: 1;
+            min-width: 300px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- MAWASILIANO --- */
+        .contact {
+            background-color: var(--kijani-kibichi);
+            color: var(--nyeupe);
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--nyeupe);
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background-color: rgba(255,255,255,0.1);
+            color: var(--nyeupe);
+            outline: none;
+        }
+
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: #ccc;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--dhahabu);
+        }
+
+        .submit-btn {
+            background-color: var(--dhahabu);
+            color: var(--kijani-kibichi);
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--nyeupe);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #052922;
+            color: #aaa;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+            border-top: 3px solid var(--dhahabu);
+        }
+
+        footer span {
+            color: var(--dhahabu);
+        }
+
+        /* RESPONSIVE DESIGN FOR PHONES */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            nav ul { display: none; } /* Inarahisisha muonekano wa simu */
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 50px 5%; }
+            .banda-section { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGESHO -->
+    <header>
+        <a href="#" class="logo">KUKU<span>BORA</span></a>
+        <nav>
+            <ul>
+                <li><a href="#">Nyumbani</a></li>
+                <li><a href="#banda">Banda Letu</a></li>
+                <li><a href="#aina-kuku">Aina za Kuku</a></li>
+                <li><a href="#mayai">Mayai</a></li>
+                <li><a href="#mawasiliano">Mawasiliano</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO HOME -->
+    <section class="hero">
+        <h1>Ufugaji wa Kisasa wa <span>Kuku Bora</span></h1>
+        <p>Tunatoa kuku wenye afya na mayai safi yaliyozalishwa katika mazingira bora na ya kisasa kabisa.</p>
+        <a href="#aina-kuku" class="btn-main">Angalia Bidhaa Zetu</a>
+    </section>
+
+    <!-- SEHEMU YA BANDA LA KUKU -->
+    <section id="banda" class="banda-section">
+        <div class="banda-text">
+            <div class="section-title" style="text-align: left;">
+                <h2>Banda Letu la Kisasa</h2>
+            </div>
+            <p>Mazingira ya ndege wetu ndio siri ya afya zao. Banda letu limejengwa kwa kufuata viwango vya juu vya usafi, hewa safi, na nafasi ya kutosha ili kuzuia magonjwa.</p>
+            <p>Tunazingatia ulishaji bora na mifumo ya kisasa ya maji ili kuhakikisha kuku wanakuwa katika hali ya furaha na uzalishaji mkubwa.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=600" alt="Banda la Kuku" class="banda-img">
+    </section>
+
+    <!-- SEHEMU YA AINA ZA KUKU -->
+    <section id="aina-kuku">
+        <div class="section-title">
+            <h2>Aina za Kuku Wanaopatikana</h2>
+        </div>
+        <div class="grid-container">
+            <!-- Kuku wa Kienyeji -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=600" alt="Kuku wa Kienyeji" class="card-img">
+                <div class="card-info">
+                    <h3>Kuku wa Kienyeji</h3>
+                    <p>Wamefugwa kiasili, wana ladha nzuri ya nyama na wanaustahimilivu mkubwa wa magonjwa.</p>
+                    <div class="price">TSh 15,000</div>
+                    <a href="#mawasiliano" class="btn-sm">Agiza Sasa</a>
+                </div>
+            </div>
+            <!-- Kuku wa Mayai -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1604848698030-c434ba08ece1?q=80&w=600" alt="Kuku wa Mayai" class="card-img">
+                <div class="card-info">
+                    <h3>Kuku wa Mayai (Layers)</h3>
+                    <p>Wazalishaji wakubwa wa mayai safi. Wanatunzwa kwa chakula maalum cha kuongeza virutubisho.</p>
+                    <div class="price">TSh 12,000</div>
+                    <a href="#mawasiliano" class="btn-sm">Agiza Sasa</a>
+                </div>
+            </div>
+            <!-- Kuku wa Nyama -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?q=80&w=600" alt="Kuku wa Nyama" class="card-img">
+                <div class="card-info">
+                    <h3>Kuku wa Nyama (Broiler)</h3>
+                    <p>Wanakuwa haraka na wana nyama laini sana. Wanafaa kwa biashara za mahoteli na sherehe.</p>
+                    <div class="price">TSh 9,000</div>
+                    <a href="#mawasiliano" class="btn-sm">Agiza Sasa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEHEMU YA MAYAI -->
+    <section id="mayai" style="background-color: var(--nyeupe);">
+        <div class="section-title">
+            <h2>Mayai Safi na Salama</h2>
+        </div>
+        <div class="grid-container">
+            <!-- Trei la Mayai ya Kienyeji -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?q=80&w=600" alt="Mayai ya Kienyeji" class="card-img">
+                <div class="card-info">
+                    <h3>Trei la Mayai ya Kienyeji</h3>
+                    <p>Mayai yenye kiini cha njano iliyoiva, yanafaa sana kwa afya ya familia yako.</p>
+                    <div class="price">TSh 18,000 / Trei</div>
+                    <a href="#mawasiliano" class="btn-sm">Agiza Trei</a>
+                </div>
+            </div>
+            <!-- Trei la Mayai ya Kisasa -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?q=80&w=600" alt="Mayai ya Kisasa" class="card-img">
+                <div class="card-info">
+                    <h3>Trei la Mayai ya Kisasa</h3>
+                    <p>Mayai makubwa ya daraja la kwanza, yanatolewa kila siku yakiwa mabichi kabisa.</p>
+                    <div class="price">TSh 11,000 / Trei</div>
+                    <a href="#mawasiliano" class="btn-sm">Agiza Trei</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEHEMU YA MAWASILIANO -->
+    <section id="mawasiliano" class="contact">
+        <div class="section-title">
+            <h2 style="color: white;">Weka Oda Yako</h2>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Asante! Oda yako ya Kuku Bora imepokelewa. Tutakuwasiliana sasa hivi.');">
+            <input type="text" placeholder="Jina Lako Kamili" required>
+            <input type="text" placeholder="Namba yako ya Simu" required>
+            <textarea rows="4" placeholder="Andika hapa idadi ya kuku au trei za mayai unazohitaji..." required></textarea>
+            <button type="submit" class="submit-btn">Tuma Oda</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <span>Kuku Bora Farm</span>. Haki zote zimehifadhiwa.</p>
+    </footer>
+
+</body>
+</html>
